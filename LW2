@@ -1,0 +1,52 @@
+% Name: Asma
+% Surname: Ahmadova
+% Group: Ekfu25/1
+% Date: 2026/09/11
+
+% Paprastas skriptas
+
+a = 200:-10:10
+b = log10(a)
+c = 10.^b
+d = c - a
+
+A = [pi/2,        3i,      exp(1)
+    log2(2),     2*pi,    log10(1)
+    log(exp(1)), pi^2,    cos(pi)]
+
+A(:,2) = rand(3,1);
+col_sums = sum(A);
+
+A_amp = 4
+f = 3
+sigma = 1
+U1 = 2.5
+U2 = 1.5
+
+t = 0:0.001:1
+s = A_amp*sin(2*pi*f*t) + 0.5*A_amp*cos(4*pi*f*t)
+n = sigma*randn(size(t))
+signal = s + n
+
+above_U1 = signal(abs(signal) > U1)
+
+filtered = signal
+filtered(abs(filtered) < U2) = 0
+
+n_total = length(signal)
+n_above = length(above_U1)
+
+min_val = min(filtered)
+max_val = max(filtered)
+
+A_p1 = [0 1 0 2 3 0 4;
+    0 0 0 0 0 0 0;
+    0 5 0 6 7 0 8;
+    0 9 0 1 2 0 3;
+    0 0 0 0 0 0 0;
+    0 4 0 5 6 0 7];
+
+rows_keep = any(A_p1 ~= 0, 2)
+cols_keep = any(A_p1 ~= 0, 1)
+
+B = A_p1(rows_keep, cols_keep)
