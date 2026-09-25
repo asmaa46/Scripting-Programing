@@ -1,0 +1,56 @@
+clear; clc; close all;
+
+x = linspace(-pi, pi, 70)
+
+f1 = cos(x)
+f2 = -x.^2 + 5
+f3 = x.^3 - 2*x.^2 - 5
+
+figure('Name', 'f1(x) = cos(x)')
+plot(x, f1, 'b-', 'LineWidth', 1.5)
+
+axis([-pi pi -1.2 1.2])
+
+grid on
+xlabel('x')
+ylabel('f_1(x)')
+title('f_1(x) = cos(x)')
+legend('f_1(x) = cos(x)', 'Location', 'best')
+
+figure('Name', 'f2(x) and f3(x)')
+
+plot(x, f2, '--r', 'Marker', 'o', 'MarkerIndices', 1:5:length(x), 'LineWidth', 1.2)
+hold on
+plot(x, f3, ':g', 'Marker', 's', 'MarkerIndices', 1:5:length(x), 'LineWidth', 1.2)
+hold off
+
+xlabel('x'); ylabel('f(x)')
+title('f_2(x) = -x^2 + 5   and   f_3(x) = x^3 - 2x^2 - 5')
+grid on
+axis([-pi pi min([f2 f3])-1 max([f2 f3])+1])
+
+legend('f_2(x) = -x^2 + 5', 'f_3(x) = x^3 - 2x^2 - 5', 'Location', 'best')
+
+rng(1)
+marks = randi([4 10], 8, 5)
+studentNames = {'V.A.', 'D.N.', 'A.T.', 'J.S.', 'K.R.', 'M.L.', 'P.B.', 'E.K.'}
+figure('Name', 'Students marks')
+subplot(2,1,1)
+bar(marks')
+
+xlabel('Laboratory session, i.d.')
+ylabel('Marks')
+title('a) Marks of each student per laboratory session')
+axis([0 6 0 10])
+grid on
+legend(studentNames, 'Location', 'eastoutside')
+
+subplot(2,1,2)
+avgMarks = mean(marks, 2)
+stem(1:8, avgMarks, 'filled')
+
+xlabel('Studentas')
+ylabel('Average mark')
+title('b) Average mark of each student')
+axis([0 9 0 10])
+grid on
