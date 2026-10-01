@@ -1,0 +1,32 @@
+clear; clc; close all;
+ 
+x = linspace(-1, 1, 40)
+y = linspace(-1, 1, 40)
+[X, Y] = meshgrid(x, y)
+R = sqrt(X.^2 + Y.^2)
+Z = exp(R.^2)
+
+figure(1)
+surf(X, Y, Z)
+colormap(gray)
+shading interp
+view(30, 30)
+xlabel('x'); ylabel('y'); zlabel('z')
+title('Surface z(r) = e^{r^2}')
+grid on
+
+clear; clc; close all;
+
+x2 = linspace(-4, 2, 40)
+y2 = linspace(-4, 2, 40)
+[X2, Y2] = meshgrid(x2, y2)
+F = 1 - 2*X2.^2 - 3*Y2.^2
+
+figure(2)
+surf(X2, Y2, F)
+colormap(copper)
+shading interp
+view(45, 30)
+xlabel('x'); ylabel('y'); zlabel('f(x,y)')
+title('Surface f(x,y) = 1 - 2x^2 - 3y^2')
+grid on
