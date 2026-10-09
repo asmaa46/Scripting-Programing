@@ -1,0 +1,62 @@
+%% Task 1
+clc;
+P1 = cell(1,5);
+P1{1} = 'Jonas';
+P1{2} = 'Jonaitis';
+P1{3} = '2004-05-12';
+P1{4} = '+37061234567';
+P1{5} = [8 9 7; 10 8 9];
+
+P2 = {'Ona', 'Onaite', '2003-11-30', '+37069876543', [9 9 10; 7 8 8]};
+
+All = [P1; P2];
+figure; cellplot(All);
+
+len   = cellfun(@length, All)
+emp   = cellfun(@isempty, All)
+isDbl = cellfun('isclass', All, 'double')
+isRe  = cellfun(@isreal, All)
+marks = cell2mat(All(:,5))
+iscell(All)
+
+%% Task 2
+prev = NaN;
+while true
+    m = input('Enter m: ');
+    if m < 0
+        f = m^2 + 1;
+    elseif m == 0
+        f = (m+1)/2;
+    else
+        f = m^2 - 1;
+    end
+    disp(['f(', num2str(m), ') = ', num2str(f)]);
+    if m == prev
+        break;
+    end
+    prev = m;
+end
+
+%%Extra task
+clc;
+A = [];
+B = [];
+while true
+    a = round(rand*7);
+    b = round(rand*9);
+    A(end+1) = a;
+    B(end+1) = b;
+    if a == b
+        break;
+    end
+end
+figure;
+plot(A, '-o');
+hold on;
+plot(B, '-s');
+hold off;
+legend('round(rand*7)', 'round(rand*9)');
+xlabel('Iteration');
+ylabel('Value');
+title('Change of two random numbers');
+grid on;
